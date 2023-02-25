@@ -400,6 +400,7 @@ export function transformLinkToAnimation($a) {
   $video.addEventListener('canplay', () => {
     $video.muted = true;
     $video.play();
+    console.log('starting video playback', Date.now());
   });
   return $video;
 }
@@ -519,9 +520,11 @@ export function updateSectionsStatus(main) {
       const loadingBlock = section.querySelector('.block[data-block-status="initialized"], .block[data-block-status="loading"]');
       if (loadingBlock) {
         section.setAttribute('data-section-status', 'loading');
+        console.log('setting section to loading', Date.now());
         break;
       } else {
         section.setAttribute('data-section-status', 'loaded');
+        console.log('setting section to loaded', Date.now());
       }
     }
   }
@@ -1012,6 +1015,7 @@ export async function loadBlocks(main) {
   for (let i = 0; i < blocks.length; i += 1) {
     // eslint-disable-next-line no-await-in-loop
     await loadBlock(blocks[i]);
+    console.log('loaded blocks', Date.now());
     updateSectionsStatus(main);
   }
   return blocks;
@@ -2143,6 +2147,7 @@ function decorateLegalCopy(main) {
  * loads everything needed to get to LCP.
  */
 async function loadEager() {
+  console.log('load eager', Date.now());
   setTheme();
   if (!window.hlx.lighthouse) await decorateTesting();
 
