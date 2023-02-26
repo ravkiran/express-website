@@ -14,7 +14,7 @@
 window.RUM_GENERATION = 'ccx-gen-4-experiment-high-sample-rate';
 window.RUM_LOW_SAMPLE_RATE = 100;
 window.RUM_HIGH_SAMPLE_RATE = 50;
-
+console.log('scripts execution starting', Date.now());
 /**
  * log RUM if part of the sample.
  * @param {string} checkpoint identifies the checkpoint in funnel
