@@ -963,6 +963,15 @@ export async function loadBlock(block, eager = false) {
 
     if (window.hlx.experiment && window.hlx.experiment.run) {
       const { experiment } = window.hlx;
+      // populate ttMETA with hlx experimentation details
+      window.ttMETA = window.ttMETA || [];
+      const experimentDetails = {
+        CampaignId: experiment.id,
+        CampaignName: experiment.experimentName,
+        OfferId: experiment.selectedVariant,
+        OfferName: experiment.variants[experiment.selectedVariant].label,
+      };
+      window.ttMETA.push(experimentDetails);
       if (experiment.selectedVariant !== 'control') {
         const { control } = experiment.variants;
         if (control && control.blocks && control.blocks.includes(blockName)) {
